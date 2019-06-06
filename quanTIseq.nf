@@ -97,25 +97,25 @@ readPairs = reads1
     println reads1
 
 
-if(image!=null){
- file(params.image)
+if(params.image!=null){
+	image=file(params.image)
 }else{
-process pullsingularity {
-        cpus 1
-        memory '1G'
-        tag { file_tag }
+	process pullsingularity {
+	        cpus 1
+	        memory '1G'
+	        tag { file_tag }
 
-        output:
-        file("quantiseq2.img") into image
+	        output:
+	        file("quantiseq2.img") into image
 
-        publishDir "${params.output_folder}", mode: 'copy'
+	        publishDir "${params.output_folder}", mode: 'copy'
 
-        shell:
-        '''
-	singularity pull IARCbioinfo/quantiseq-nf:v4
-	mv  IARCbioinfo-quantiseq-nf-master-v4.simg quantiseq2.img
-        '''
-}
+	        shell:
+	        '''
+		singularity pull IARCbioinfo/quantiseq-nf:v4
+		mv  IARCbioinfo-quantiseq-nf-master-v4.simg quantiseq2.img
+	        '''
+	}
 }
 
 // launches quanTIseq
