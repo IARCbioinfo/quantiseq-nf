@@ -31,7 +31,7 @@ params.help = null
 
 log.info ""
 log.info "--------------------------------------------------------"
-log.info "  <PROGRAM_NAME> <VERSION>: <SHORT DESCRIPTION>         "
+log.info "  quantiseq-nf <VERSION>: <SHORT DESCRIPTION>         "
 log.info "--------------------------------------------------------"
 log.info "Copyright (C) IARC/WHO"
 log.info "This program comes with ABSOLUTELY NO WARRANTY; for details see LICENSE"
