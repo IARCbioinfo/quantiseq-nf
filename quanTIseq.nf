@@ -137,7 +137,7 @@ process quanTIseq {
 	shell:
 	file_tag = pairs[0].name.replace("${params.suffix1}.${params.fastq_ext}","")
     	'''
-	echo "!{file_tag} !{pairs[0]}\t!{pairs[1]}" > input.txt
+	echo "!{file_tag}\t!{pairs[0]}\t!{pairs[1]}" > input.txt
 	!{baseDir}/bin/quanTIseq_pipeline.sh --prefix=quanTIseq_!{file_tag} --threads=!{params.cpu} --inputfile=input.txt --outputdir=!{params.input}
     	'''
 }
