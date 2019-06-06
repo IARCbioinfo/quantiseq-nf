@@ -25,6 +25,7 @@ params.cpu  = 1
 params.suffix1   = "_1"
 params.suffix2   = "_2"
 params.fastq_ext = "fastq.gz"
+params.image = null
 
 params.help = null
 
@@ -96,6 +97,27 @@ readPairs = reads1
     println reads1
 
 
+if(image!=null){
+ file(params.image)
+}else{
+process pullsingularity {
+        cpus 1
+        memory '1G'
+        tag { file_tag }
+
+        output:
+        file("quantiseq2.img") into image
+
+        publishDir "${params.output_folder}", mode: 'copy'
+
+        shell:
+        '''
+	singularity pull IARCbioinfo/quantiseq-nf:v4
+	mv  IARCbioinfo-quantiseq-nf-master-v4.simg quantiseq2.img
+        '''
+}
+}
+
 // launches quanTIseq
 process quanTIseq {
 	cpus params.cpu
@@ -104,6 +126,7 @@ process quanTIseq {
 
 	input:
 	file pairs from readPairs
+	file image
 	
 	output:
 	file("*.txt") into outputs
@@ -115,6 +138,6 @@ process quanTIseq {
 	file_tag = pairs[0].name.replace("${params.suffix1}.${params.fastq_ext}","")
     	'''
 	echo "!{file_tag} !{pairs[0]}\t!{pairs[1]}" > input.txt
-	quanTIseq_pipeline.sh --tumor --prefix=quanTIseq_!{file_tag} --threads=!{params.cpu} --inputfile=input.txt --outputdir=!{params.input}
+	!{baseDir}/bin/quanTIseq_pipeline.sh --prefix=quanTIseq_!{file_tag} --threads=!{params.cpu} --inputfile=input.txt --outputdir=!{params.input}
     	'''
 }
