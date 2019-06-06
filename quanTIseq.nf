@@ -130,7 +130,6 @@ process quanTIseq {
 	
 	output:
 	file("*.txt") into outputs
-	file("*.tsv") into outputs2
 
 	publishDir "${params.output_folder}", mode: 'copy'
     
