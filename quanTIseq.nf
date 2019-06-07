@@ -129,7 +129,7 @@ process quanTIseq {
 	file image
 	
 	output:
-	file("quantiseqResults*/*.txt") into outputs
+	file("quantiseqResults*/*txt") into outputs
 
 	publishDir "${params.output_folder}", mode: 'copy'
     
@@ -137,6 +137,7 @@ process quanTIseq {
 	file_tag = pairs[0].name.replace("${params.suffix1}.${params.fastq_ext}","")
     	'''
 	echo "!{file_tag}\t!{pairs[0]}\t!{pairs[1]}" > input.txt
-	!{baseDir}/bin/quanTIseq_pipeline.sh --prefix=quanTIseq_!{file_tag} --threads=!{params.cpu} --inputfile=input.txt --outputdir=.
+	!{baseDir}/bin/quanTIseq_pipeline.sh --threads=!{params.cpu} --inputfile=input.txt --outputdir=.
+        mv quantiseqResults_* quantiseqResults_!{file_tag}
     	'''
 }
