@@ -129,7 +129,7 @@ process quanTIseq {
 	file image
 	
 	output:
-	file("*.txt") into outputs
+	file("quantiseqResults*/*.txt") into outputs
 
 	publishDir "${params.output_folder}", mode: 'copy'
     
