@@ -138,6 +138,7 @@ process quanTIseq {
     	'''
 	echo "!{file_tag}\t!{pairs[0]}\t!{pairs[1]}" > input.txt
 	!{baseDir}/bin/quanTIseq_pipeline.sh --threads=!{params.cpu} --inputfile=input.txt --outputdir=.
-        mv quantiseqResults_* quantiseqResults_!{file_tag}
+        mv quantiseqResults_* quantiseqResults_!{file_tag} 
+        cd quantiseqResults_!{file_tag}/ && mv quanTIseq_cell_fractions.txt quanTIseq_cell_fractions_!{file_tag}.txt && mv quanTIseq_gene_tpm.txt quanTIseq_gene_tpm_!{file_tag}.txt
     	'''
 }
