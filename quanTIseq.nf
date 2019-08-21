@@ -49,20 +49,24 @@ if (params.help) {
     log.info ""
     log.info "Mandatory arguments:"
     log.info '    --input_folder   FOLDER                  Folder containing fastq files.'
-    log.info '    --suffix1        STRING                  Suffix for fastq file with 1st element of pair.'
-    log.info '    --suffix2        STRING                  Suffix for fastq file with 2nd element of pair.'
     log.info ""
     log.info "Optional arguments:"
     log.info '    --output_folder     STRING                Output folder (default: .).'
+    log.info '    --suffix1        STRING                  Suffix for fastq file with 1st element of pair.'
+    log.info '    --suffix2        STRING                  Suffix for fastq file with 2nd element of pair.'
     log.info '    --cpu          INTEGER                 Number of cpu used (default: 1).'
     log.info '    --mem          INTEGER                 Size of memory (in GB) (default: 2).' 
+    log.info '    --image          STRING                 Path to quantiseq singularity image (default: null).' 
     exit 0
 } else {
 /* Software information */
    log.info "input_folder = ${params.input_folder}"
    log.info "cpu          = ${params.cpu}"
    log.info "mem          = ${params.mem}"
+   log.info "suffix1      = ${params.suffix1}"
+   log.info "suffix2      = ${params.suffix2}"
    log.info "output_folder= ${params.output_folder}"
+   log.info "image        = ${params.image}"
    log.info "help:                               ${params.help}"
 }
 
