@@ -104,7 +104,6 @@ if(params.image!=null){
 	process pullsingularity {
 	        cpus 1
 	        memory '1G'
-	        tag { file_tag }
 
 	        output:
 	        file("quantiseq2.img") into image
@@ -126,7 +125,7 @@ if(params.input_file){
     process merge {
 	        cpus 2
 	        memory params.mem+'G'
-	        tag { file_tag }
+	        tag { SM }
 
             input:
 	        set val(SM), file(pair1), file(pair2) from readPairs2merge
