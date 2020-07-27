@@ -8,6 +8,7 @@ jobs:
         steps:
                 - checkout
                 - run: cd ~ ; wget -qO- get.nextflow.io | bash ; chmod 755 nextflow ; sudo ln -s ~/nextflow /usr/local/bin/ ; sudo apt-get install graphviz
+                - run: cd ~; VERSION=2.5.2; wget https://github.com/singularityware/singularity/releases/download/$VERSION/singularity-$VERSION.tar.gz; tar xvf singularity-$VERSION.tar.gz; cd singularity-$VERSION; ./configure --prefix=/usr/local; make; sudo make install
                 - run: cd ~ && git clone https://github.com/iarcbioinfo/data_test.git
                 - run: cd ~ ; singularity pull quantiseq2-test.img shub://IARCbioinfo/quantiseq-nf:v1.0
 #                        - run: echo " docker.runOptions = '-u $(id -u):$(id -g)' " > ~/.nextflow/config
@@ -24,9 +25,4 @@ jobs:
 workflows:
   install_s_build_and_test:
     jobs:
-      - singularity/install_debian_3:
-                go-version: '1.13'
-                singularity-version: 3.5.0  
-      - build:
-        requires:
-                - singularity/install_debian_3
+      - build
