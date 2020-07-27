@@ -54,6 +54,11 @@ For each sample, a folder is created with the two quanTIseq output files (see ht
 - quanTIseq_gene_tpm_sample.txt, the expression quantification table (in Transcripts Per Million or TPM) with a row for each of the 19424 annotated genes
 - quanTIseq_cell_fractions_sample.txt, the table with the proportion of cells from each cell type (columns)
 
+## Directed Acyclic Graph
+
+### With default options
+[![DAG](dag.png)](http://htmlpreview.github.io/?https://github.com/IARCbioinfo/quantiseq-nf/blob/master/dag.html)
+
 ## Contributions
 
   | Name      | Email | Description     |
