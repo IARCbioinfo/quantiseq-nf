@@ -2,7 +2,10 @@
 
 ## Nextflow pipeline to run software quanTIseq in parallel to quantify immune cell content from RNA-seq data
 
-![workflow](RNAseqpipeline.png?raw=true "Scheme of alignment/realignment Workflow")
+[![https://www.singularity-hub.org/static/img/hosted-singularity--hub-%23e32929.svg](https://www.singularity-hub.org/static/img/hosted-singularity--hub-%23e32929.svg)](https://singularity-hub.org/collections/3065)
+
+
+![workflow](quantiseq-nf.png?raw=true "Scheme of alignment/realignment Workflow")
 
 ## Description
 This Nextflow pipeline uses the singularity image of quanTIseq to launch the quanTIseq pipeline that performs immune cell quantification of 10 cell types from RNA-seq data. See https://icbi.i-med.ac.at/software/quantiseq/doc/ for general information about quanTIseq and the companion article Finotello, et al. Molecular and pharmacological modulators of the tumor immune contexture revealed by deconvolution of RNA-seq data. Genome Med. 2019;11:34. https://doi.org/10.1186/s13073-019-0638-6
