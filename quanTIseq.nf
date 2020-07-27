@@ -150,10 +150,10 @@ if(params.input_file){
 process quanTIseq {
 	cpus params.cpu
 	memory params.mem+'G'
-	tag { file_tag }
+	tag { SM }
 
 	input:
-	file pairs from readPairs
+	set val(SM), file(pair1), file(pair2) from readPairs
 	file image
 	
 	output:
@@ -162,12 +162,11 @@ process quanTIseq {
 	publishDir "${params.output_folder}", mode: 'copy'
     
 	shell:
-	file_tag = pairs[0].name.replace("${params.suffix1}.${params.fastq_ext}","")
-    mode = params.nontumor  ? "" : "--tumor=TRUE"
+	mode = params.nontumor  ? "" : "--tumor=TRUE"
     '''
-	echo "!{file_tag}\t!{pairs[0]}\t!{pairs[1]}" > input.txt
+	echo "!{SM}\t!{pair1}\t!{pair2}" > input.txt
 	!{baseDir}/bin/quanTIseq_pipeline.sh --threads=!{params.cpu} --inputfile=input.txt --outputdir=. !{mode}
-    mv quantiseqResults_* quantiseqResults_!{file_tag} 
-    cd quantiseqResults_!{file_tag}/ && mv quanTIseq_cell_fractions.txt quanTIseq_cell_fractions_!{file_tag}.txt && mv quanTIseq_gene_tpm.txt quanTIseq_gene_tpm_!{file_tag}.txt
+    mv quantiseqResults_* quantiseqResults_!{SM} 
+    cd quantiseqResults_!{SM}/ && mv quanTIseq_cell_fractions.txt quanTIseq_cell_fractions_!{SM}.txt && mv quanTIseq_gene_tpm.txt quanTIseq_gene_tpm_!{SM}.txt
     '''
 }
