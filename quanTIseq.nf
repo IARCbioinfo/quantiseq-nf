@@ -24,15 +24,15 @@ params.mem  = 2
 params.cpu  = 1
 params.suffix1   = "_1"
 params.suffix2   = "_2"
-params.fastq_ext = "fastq.gz"
+params.fastq_ext = "fq.gz"
 params.image = null
 
 params.help = null
 
 log.info ""
-log.info "--------------------------------------------------------"
-log.info "  quantiseq-nf <VERSION>: <SHORT DESCRIPTION>         "
-log.info "--------------------------------------------------------"
+log.info "-----------------------------------------------------------------------------------"
+log.info "  quantiseq-nf v1.0: quantification of immune infiltration with software quanTIseq "
+log.info "-----------------------------------------------------------------------------------"
 log.info "Copyright (C) IARC/WHO"
 log.info "This program comes with ABSOLUTELY NO WARRANTY; for details see LICENSE"
 log.info "This is free software, and you are welcome to redistribute it"
@@ -54,6 +54,7 @@ if (params.help) {
     log.info '    --output_folder     STRING                Output folder (default: .).'
     log.info '    --suffix1        STRING                  Suffix for fastq file with 1st element of pair.'
     log.info '    --suffix2        STRING                  Suffix for fastq file with 2nd element of pair.'
+    log.info '    --fastq_ext      STRING                 Extension of fastq files (default : fq.gz)'
     log.info '    --cpu          INTEGER                 Number of cpu used (default: 1).'
     log.info '    --mem          INTEGER                 Size of memory (in GB) (default: 2).' 
     log.info '    --image          STRING                 Path to quantiseq singularity image (default: null).' 
@@ -66,6 +67,7 @@ if (params.help) {
    log.info "suffix1      = ${params.suffix1}"
    log.info "suffix2      = ${params.suffix2}"
    log.info "output_folder= ${params.output_folder}"
+   log.info "fastq_ext      = ${params.fastq_ext}"
    log.info "image        = ${params.image}"
    log.info "help:                               ${params.help}"
 }
@@ -116,8 +118,7 @@ if(params.image!=null){
 
 	        shell:
 	        '''
-		singularity pull IARCbioinfo/quantiseq-nf:v4
-		mv  IARCbioinfo-quantiseq-nf-master-v4.simg quantiseq2.img
+		singularity pull quantiseq2.img IARCbioinfo/quantiseq-nf:v1.0
 	        '''
 	}
 }
@@ -141,7 +142,7 @@ process quanTIseq {
 	file_tag = pairs[0].name.replace("${params.suffix1}.${params.fastq_ext}","")
     	'''
 	echo "!{file_tag}\t!{pairs[0]}\t!{pairs[1]}" > input.txt
-	!{baseDir}/bin/quanTIseq_pipeline.sh --threads=!{params.cpu} --inputfile=input.txt --outputdir=.
+	!{baseDir}/bin/quanTIseq_pipeline.sh --threads=!{params.cpu} --inputfile=input.txt --outputdir=. --tumor=TRUE
         mv quantiseqResults_* quantiseqResults_!{file_tag} 
         cd quantiseqResults_!{file_tag}/ && mv quanTIseq_cell_fractions.txt quanTIseq_cell_fractions_!{file_tag}.txt && mv quanTIseq_gene_tpm.txt quanTIseq_gene_tpm_!{file_tag}.txt
     	'''

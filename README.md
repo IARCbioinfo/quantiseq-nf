@@ -1,5 +1,8 @@
 # quantiseq-nf
-Pipeline to run software quanTIseq in parallel to quantify immune cell content from RNA-seq data
+
+## Nextflow pipeline to run software quanTIseq in parallel to quantify immune cell content from RNA-seq data
+
+![workflow](RNAseqpipeline.png?raw=true "Scheme of alignment/realignment Workflow")
 
 ## Description
 This Nextflow pipeline uses the singularity image of quanTIseq to launch the quanTIseq pipeline that performs immune cell quantification of 10 cell types from RNA-seq data. See https://icbi.i-med.ac.at/software/quantiseq/doc/ for general information about quanTIseq and the companion article Finotello, et al. Molecular and pharmacological modulators of the tumor immune contexture revealed by deconvolution of RNA-seq data. Genome Med. 2019;11:34. https://doi.org/10.1186/s13073-019-0638-6
@@ -23,21 +26,20 @@ This Nextflow pipeline uses the singularity image of quanTIseq to launch the qua
 |--output_folder   | . | Output folder for results|
 |--cpu          | 1 | number of CPUs |
 |--mem         | 2 | memory|
-|--fastq_ext    | fastq.gz | extension of fastq files|
+|--fastq_ext    | fq.gz | extension of fastq files|
 |--suffix1      | \_1 | suffix for second element of read files pair|
 |--suffix2      | \_2 | suffix for second element of read files pair|
 |--image      | null | singularity image|
 
 Note that if no singularity image is provided, the image is pulled from singularity hub. If the pipeline is reused frequently, it might be more efficient to pull the image manually with the command:
 ```bash
-singularity pull IARCbioinfo/quantiseq-nf:v4
-mv  IARCbioinfo-quantiseq-nf-master-v4.simg quantiseq2.img
+singularity pull quantiseq2.img IARCbioinfo/quantiseq-nf:v1.0
 ```
 and then to provide the path to quantiseq2.img as a parameter.
 
 ## Usage
 ```bash
-nextflow run iarcbioinfo/quantiseq-nf --input_folder input --out_folder output --image quantiseq2.img
+nextflow run iarcbioinfo/quantiseq-nf -r v1.0 --input_folder input --output_folder output --image quantiseq2.img
 ```
 
 ## Output 
@@ -54,4 +56,4 @@ For each sample, a folder is created with the two quanTIseq output files (see ht
   | Name      | Email | Description     |
   |-----------|---------------|-----------------| 
   | Tiffany Delhomme   |     Delhommet@student.iarc.fr | Developer |
-  | Nicolas Alcala*    | AlcalaN@fellows.iarc.fr    | Developer to contact for support |
+  | Nicolas Alcala*    | AlcalaN@iarc.fr    | Developer to contact for support |
