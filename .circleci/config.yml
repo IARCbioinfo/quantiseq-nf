@@ -27,4 +27,6 @@ workflows:
       - singularity/install_debian_3:
                 go-version: '1.13'
                 singularity-version: 3.5.0  
-      - build
+      - build:
+        requires:
+                - singularity/install_debian_3
