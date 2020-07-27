@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   singularity: singularity/singularity@1.0.10
 jobs:
-        build-test-deploy:
+        build:
                 machine: true
                 steps:
                         - singularity/install_debian_3:
