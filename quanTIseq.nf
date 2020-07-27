@@ -125,7 +125,7 @@ if(params.input_file){
 
     process merge {
 	        cpus 2
-	        memory '4G'
+	        memory params.mem+'G'
 	        tag { file_tag }
 
             input:
@@ -144,7 +144,6 @@ if(params.input_file){
 	}
 
     readPairs = readPairsNot2merge.concat( readPairsMerged )
-
 }
 
 // launches quanTIseq

@@ -13,14 +13,15 @@ jobs:
                 - run: cd ~ ; export VERSION=1.13 OS=linux ARCH=amd64; wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz; sudo tar -C /usr/local -xzvf go$VERSION.$OS-$ARCH.tar.gz ; rm go$VERSION.$OS-$ARCH.tar.gz; sudo ln -s /usr/local/go/bin/go /usr/local/bin/
                 - run: which go; go version; go env
                 - run: cd ~ ; VERSION=3.6.0; wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz; tar -xzf singularity-${VERSION}.tar.gz; cd singularity; ./mconfig; make -C builddir; sudo make -C builddir install                         
-                - run: cd ~ ; singularity pull quantiseq2.img shub://IARCbioinfo/quantiseq-nf:v1.0
+                - run: cd ~ ; singularity pull quantiseq2.img shub://IARCbioinfo/quantiseq-nf:v1.1
                 - run: cd ~ ; wget -qO- get.nextflow.io | bash ; chmod 755 nextflow ; sudo ln -s ~/nextflow /usr/local/bin/ 
                 - run: cd ~ && git clone https://github.com/iarcbioinfo/data_test.git
                 - run: cd ; nextflow run ~/project/quanTIseq.nf --help
                 - run: cd ; nextflow run ~/project/quanTIseq.nf --input_folder ~/data_test/FASTQ/ --output_folder quantif --fastq_ext fastq.gz --cpu 2 --mem 4
-                - run: cd ; nextflow run ~/project/quanTIseq.nf --input_folder ~/data_test/FASTQ/ --output_folder quantif --fastq_ext fastq.gz --cpu 2 --mem 4 -with-dag dag.html
+                - run: cd ; nextflow run ~/project/quanTIseq.nf --input_folder ~/data_test/FASTQ/ --output_folder quantif --fastq_ext fastq.gz --cpu 2 --mem 4
                 - run: cd ; nextflow run ~/project/quanTIseq.nf --input_folder ~/data_test/FASTQ/ --output_folder quantif --fastq_ext fastq.gz --image quantiseq2.img --cpu 2 --mem 4 -with-dag dag_image.png
                 - run: cd ; echo -e 'SM\tpair1\tpair2\nNA06984\tdata_test/FASTQ/NA06984_T_1.fastq.gz\tdata_test/FASTQ/NA06984_T_2.fastq.gz\nNA06984_2RG\tdata_test/FASTQ/NA06984_T_RG1_1.fastq.gz\tdata_test/FASTQ/NA06984_T_RG1_2.fastq.gz\nNA06984_2RG\tdata_test/FASTQ/NA06984_T_RG2_1.fastq.gz\tdata_test/FASTQ/NA06984_T_RG2_2.fastq.gz' > input.txt ; nextflow run ~/project/quanTIseq.nf --input_file input.txt --output_folder quantif_inputfile --fastq_ext fastq.gz --cpu 2 --cpu_trim 2 --mem 4 -with-dag dag.png
+                - run: cd ; nextflow run ~/project/quanTIseq.nf --input_file input.txt --output_folder quantif_inputfile --fastq_ext fastq.gz --cpu 2 --cpu_trim 2 --mem 4 -with-dag dag.png
                 - run: cd ; cp ~/dag.* ~/project/.
                 - add_ssh_keys:
                                 fingerprints:
