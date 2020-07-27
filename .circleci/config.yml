@@ -8,8 +8,10 @@ jobs:
         steps:
                 - checkout
                 - run: sudo apt-get install graphviz; sudo apt-get install libarchive-dev
-                - run: cd ~ ; export VERSION=1.13 OS=linux ARCH=amd64; wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz; sudo tar -C /usr/local -xzvf go$VERSION.$OS-$ARCH.tar.gz ; rm go$VERSION.$OS-$ARCH.tar.gz
-                - run: sudo ln -s /usr/local/go/bin/go /usr/local/bin/; which go; go version
+                - run: which go; go version; go env
+                - run: sudo apt-get install golang
+                #- run: cd ~ ; export VERSION=1.13 OS=linux ARCH=amd64; wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz; sudo tar -C /usr/local -xzvf go$VERSION.$OS-$ARCH.tar.gz ; rm go$VERSION.$OS-$ARCH.tar.gz; sudo ln -s /usr/local/go/bin/go /usr/local/bin/
+                - run: which go; go version; go env
                 - run: cd ~ ; VERSION=3.6.0; wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz; tar -xzf singularity-${VERSION}.tar.gz; cd singularity; ./mconfig; make -C builddir; sudo make -C builddir install                         
                 - run: cd ~ ; singularity pull quantiseq2-test.img shub://IARCbioinfo/quantiseq-nf:v1.0
                 - run: cd ~ ; wget -qO- get.nextflow.io | bash ; chmod 755 nextflow ; sudo ln -s ~/nextflow /usr/local/bin/ 
