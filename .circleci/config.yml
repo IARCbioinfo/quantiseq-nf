@@ -9,7 +9,8 @@ jobs:
                 - checkout
                 - run: cd ~ ; wget -qO- get.nextflow.io | bash ; chmod 755 nextflow ; sudo ln -s ~/nextflow /usr/local/bin/ 
                 - run: sudo apt-get install graphviz; sudo apt-get install libarchive-dev
-                - run: cd ~; export VERSION=1.13 OS=linux ARCH=amd64; wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz; sudo tar -C /usr/local -xzvf go$VERSION.$OS-$ARCH.tar.gz ; rm go$VERSION.$OS-$ARCH.tar.gz && export PATH=/usr/local/go/bin:$PATH
+                - run: cd ~ ; export VERSION=1.13 OS=linux ARCH=amd64; wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz; sudo tar -C /usr/local -xzvf go$VERSION.$OS-$ARCH.tar.gz ; rm go$VERSION.$OS-$ARCH.tar.gz; export PATH=/usr/local/go/bin:$PATH
+                - run: echo $PATH
                 - run: cd ~ ; VERSION=3.6.0; wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz; tar -xzf singularity-${VERSION}.tar.gz; cd singularity; ./mconfig; make -C builddir; sudo make -C builddir install                         
                 - run: cd ~ ; singularity pull quantiseq2-test.img shub://IARCbioinfo/quantiseq-nf:v1.0
                 - run: cd ; nextflow run ~/project/quanTIseq.nf --help
