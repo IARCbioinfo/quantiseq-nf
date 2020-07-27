@@ -1,7 +1,7 @@
 # quantiseq-nf
 
 ## Nextflow pipeline to run software quanTIseq in parallel to quantify immune cell content from RNA-seq data
-
+[![CircleCI](https://circleci.com/gh/IARCbioinfo/quantiseq-nf/tree/master.svg?style=svg)](https://circleci.com/gh/IARCbioinfo/quantiseq-nf/tree/master)
 [![https://www.singularity-hub.org/static/img/hosted-singularity--hub-%23e32929.svg](https://www.singularity-hub.org/static/img/hosted-singularity--hub-%23e32929.svg)](https://singularity-hub.org/collections/3065)
 
 
