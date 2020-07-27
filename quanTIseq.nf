@@ -134,8 +134,6 @@ if(params.input_file){
 	        output:
 	        set val(SM), file("${SM}${params.suffix1}.${params.fastq_ext}"), file("${SM}${params.suffix2}.${params.fastq_ext}") into readPairsMerged
 
-	        publishDir "${params.output_folder}", mode: 'copy'
-
 	        shell:
 	        '''
 		    cat !{pair1} > !{SM}!{params.suffix1}.!{params.fastq_ext}
