@@ -57,7 +57,7 @@ For each sample, a folder is created with the two quanTIseq output files (see ht
 ## Directed Acyclic Graph
 
 ### With default options
-[![DAG](dag.png)](http://htmlpreview.github.io/?https://github.com/IARCbioinfo/quantiseq-nf/blob/dev/dag.html)
+[![DAG](dag.png)](http://htmlpreview.github.io/?https://github.com/IARCbioinfo/quantiseq-nf/blob/master/dag.html)
 
 ## Contributions
 
