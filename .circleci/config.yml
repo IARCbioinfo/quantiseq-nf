@@ -2,25 +2,25 @@ version: 2.1
 orbs:
   singularity: singularity/singularity@1.0.10
 workflows:
-  install_debian_3:
+  version: 2
+  build_and_test:
     jobs:
       - singularity/install_debian_3:
           go-version: '1.13'
           singularity-version: 3.5.0
-        build:
-                machine: true
-                steps:
-                        - checkout
-                        - run: cd ~ ; wget -qO- get.nextflow.io | bash ; chmod 755 nextflow ; sudo ln -s ~/nextflow /usr/local/bin/ ; sudo apt-get install graphviz
-                        - run: cd ~ && git clone https://github.com/iarcbioinfo/data_test.git
-                        - run: cd ~ ; singularity pull quantiseq2-test.img shub://IARCbioinfo/quantiseq-nf:v1.0
+          machine: true
+          steps:              
+                - checkout
+                - run: cd ~ ; wget -qO- get.nextflow.io | bash ; chmod 755 nextflow ; sudo ln -s ~/nextflow /usr/local/bin/ ; sudo apt-get install graphviz
+                - run: cd ~ && git clone https://github.com/iarcbioinfo/data_test.git
+                - run: cd ~ ; singularity pull quantiseq2-test.img shub://IARCbioinfo/quantiseq-nf:v1.0
 #                        - run: echo " docker.runOptions = '-u $(id -u):$(id -g)' " > ~/.nextflow/config
 #                        - run: cd ~/project/ ; docker build -t iarcbioinfo/rnaseq-nf .
-                        - run: cd ; nextflow run ~/project/quanTIseq.nf --help
-                        - run: cd ; nextflow run ~/project/quanTIseq.nf --input_folder ~/data_test/FASTQ/ --output_folder quantif --fastq_ext fastq.gz --cpu 2 --mem 4 -with-dag dag.png
-                        - run: cd ; nextflow run ~/project/quanTIseq.nf --input_folder ~/data_test/FASTQ/ --output_folder quantif --fastq_ext fastq.gz --image quantiseq2-test.img --cpu 2 --mem 4 -with-dag dag.png
+                - run: cd ; nextflow run ~/project/quanTIseq.nf --help
+                - run: cd ; nextflow run ~/project/quanTIseq.nf --input_folder ~/data_test/FASTQ/ --output_folder quantif --fastq_ext fastq.gz --cpu 2 --mem 4 -with-dag dag.png
+                - run: cd ; nextflow run ~/project/quanTIseq.nf --input_folder ~/data_test/FASTQ/ --output_folder quantif --fastq_ext fastq.gz --image quantiseq2-test.img --cpu 2 --mem 4 -with-dag dag.png
 #                        - run: cd ; echo -e 'SM\tpair1\tpair2\nNA06984\tdata_test/FASTQ/NA06984_T_1.fastq.gz\tdata_test/FASTQ/NA06984_T_2.fastq.gz\nNA06984_2RG\tdata_test/FASTQ/NA06984_T_RG1_1.fastq.gz\tdata_test/FASTQ/NA06984_T_RG1_2.fastq.gz\nNA06984_2RG\tdata_test/FASTQ/NA06984_T_RG2_1.fastq.gz\tdata_test/FASTQ/NA06984_T_RG2_2.fastq.gz' > input.txt ; nextflow run ~/project/quantiseq.nf --input_file input.txt --output_folder quantif_inputfile --fastq_ext fastq.gz --cpu 2 --cpu_trim 2 --mem 4
-                        - run: cd ; cp ~/dag* ~/project/.
-                        - deploy:
-                                branch: [master, dev]
-                                command: chmod +x deploy.sh && ./deploy.sh
+                - run: cd ; cp ~/dag* ~/project/.
+                - deploy:
+                        branch: [master, dev]
+                        command: chmod +x deploy.sh && ./deploy.sh
