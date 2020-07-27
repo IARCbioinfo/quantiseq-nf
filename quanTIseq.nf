@@ -100,9 +100,6 @@ readPairs = reads1
     .phase(reads2)
     .map { pair1, pair2 -> [ pair1[1], pair2[1] ] }
 
-    println reads1
-
-
 if(params.image!=null){
 	image=file(params.image)
 }else{
@@ -118,7 +115,7 @@ if(params.image!=null){
 
 	        shell:
 	        '''
-		singularity pull quantiseq2.img IARCbioinfo/quantiseq-nf:v1.0
+		singularity pull quantiseq2.img shub://IARCbioinfo/quantiseq-nf:v1.0
 	        '''
 	}
 }
