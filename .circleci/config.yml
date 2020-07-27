@@ -9,11 +9,9 @@ jobs:
                 - checkout
                 - run: cd ~ ; wget -qO- get.nextflow.io | bash ; chmod 755 nextflow ; sudo ln -s ~/nextflow /usr/local/bin/ 
                 - run: sudo apt-get install graphviz; sudo apt-get install libarchive-dev
-                - run: cd ~; VERSION=2.5.2; wget https://github.com/singularityware/singularity/releases/download/$VERSION/singularity-$VERSION.tar.gz; tar xvf singularity-$VERSION.tar.gz; cd singularity-$VERSION; ./configure --prefix=/usr/local; make; sudo make install
-                - run: cd ~ && git clone https://github.com/iarcbioinfo/data_test.git
-                - run: cd ~ ; singularity pull quantiseq2-test.img shub://IARCbioinfo/quantiseq-nf:v1.0
+                - run: cd ~; VERSION=3.6.0; wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz; tar -xzf singularity-${VERSION}.tar.gz; cd singularity; ./mconfig; make -C builddir; sudo make -C builddir install                         
+    cd singularitywget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz run: cd ~ ; singularity pull quantiseq2-test.img shub://IARCbioinfo/quantiseq-nf:v1.0
 #                        - run: echo " docker.runOptions = '-u $(id -u):$(id -g)' " > ~/.nextflow/config
-#                        - run: cd ~/project/ ; docker build -t iarcbioinfo/rnaseq-nf .
                 - run: cd ; nextflow run ~/project/quanTIseq.nf --help
                 - run: cd ; nextflow run ~/project/quanTIseq.nf --input_folder ~/data_test/FASTQ/ --output_folder quantif --fastq_ext fastq.gz --cpu 2 --mem 4 -with-dag dag.png
                 - run: cd ; nextflow run ~/project/quanTIseq.nf --input_folder ~/data_test/FASTQ/ --output_folder quantif --fastq_ext fastq.gz --image quantiseq2-test.img --cpu 2 --mem 4 -with-dag dag.png
