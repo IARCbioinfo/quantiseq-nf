@@ -48,9 +48,11 @@ nextflow run iarcbioinfo/quantiseq-nf -r v1.0 --input_folder input --output_fold
 ## Output 
   | Type      | Description     |
   |-----------|---------------|
-  | quantiseqResults_sample    |  a folder with quanTIseq results |
+  | quanTIseq_cell_fractions_matrix.txt    |  a matrix with cell fractions (columns) for each sample (row) |
+  |  quanTIseq_gene_tpm_matrix.txt   |  a matrix with gene counts (rows) for each sample (column)|
+  | intermediate_results/quantiseqResults_sample    |  a folder with quanTIseq results |
 
-For each sample, a folder is created with the two quanTIseq output files (see https://icbi.i-med.ac.at/software/quantiseq/doc/ for details): 
+For each sample, a folder is created in folder intermediate_results with the two quanTIseq output files (see https://icbi.i-med.ac.at/software/quantiseq/doc/ for details): 
 - quanTIseq_gene_tpm_sample.txt, the expression quantification table (in Transcripts Per Million or TPM) with a row for each of the 19424 annotated genes
 - quanTIseq_cell_fractions_sample.txt, the table with the proportion of cells from each cell type (columns)
 
