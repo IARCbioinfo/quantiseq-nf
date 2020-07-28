@@ -21,7 +21,7 @@ jobs:
                 - run: cd ; nextflow run ~/project/quanTIseq.nf --input_folder ~/data_test/FASTQ/ --output_folder quantif --fastq_ext fastq.gz --cpu 2 --mem 4
                 - run: cd ; nextflow run ~/project/quanTIseq.nf --input_folder ~/data_test/FASTQ/ --output_folder quantif --fastq_ext fastq.gz --image quantiseq2.img --cpu 2 --mem 4 -with-dag dag_image.png
                 - run: cd ; echo -e 'SM\tpair1\tpair2\nNA06984\tdata_test/FASTQ/NA06984_T_1.fastq.gz\tdata_test/FASTQ/NA06984_T_2.fastq.gz\nNA06984_2RG\tdata_test/FASTQ/NA06984_T_RG1_1.fastq.gz\tdata_test/FASTQ/NA06984_T_RG1_2.fastq.gz\nNA06984_2RG\tdata_test/FASTQ/NA06984_T_RG2_1.fastq.gz\tdata_test/FASTQ/NA06984_T_RG2_2.fastq.gz' > input.txt ; nextflow run ~/project/quanTIseq.nf --input_file input.txt --output_folder quantif_inputfile --fastq_ext fastq.gz --cpu 2 --cpu_trim 2 --mem 4 -with-dag dag.png
-                - run: cd ; nextflow run ~/project/quanTIseq.nf --input_file input.txt --output_folder quantif_inputfile --fastq_ext fastq.gz --cpu 2 --cpu_trim 2 --mem 4 -with-dag dag.png
+                - run: cd ; nextflow run ~/project/quanTIseq.nf --input_file input.txt --output_folder quantif_inputfile --fastq_ext fastq.gz --cpu 2 --cpu_trim 2 --mem 4 -with-dag dag.html
                 - run: cd ; cp ~/dag.* ~/project/.
                 - add_ssh_keys:
                                 fingerprints:
