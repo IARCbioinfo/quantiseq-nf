@@ -182,6 +182,7 @@ process merge_quanTIseq_res {
 	shell:
     '''
     awk 'FNR==1 && NR!=1 { while (/^Sample/) getline; } 1 {print}' quanTIseq_cell_fractions*.txt > quanTIseq_cell_fractions_matrix.txt
-    join quanTIseq_gene_tpm_*.txt > quanTIseq_gene_tpm_matrix.txt
+    for f in `ls quanTIseq_gene_tpm_*.txt`; do cut -f2 $f > $f.cut && cut -f1 $f > rownames_gene_tpm.txt; done
+    paste rownames_gene_tpm.txt quanTIseq_gene_tpm_*.txt.cut > quanTIseq_gene_tpm_matrix.txt
 	'''
 }
