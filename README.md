@@ -36,13 +36,13 @@ This Nextflow pipeline uses the singularity image of quanTIseq to launch the qua
 
 Note that if no singularity image is provided, the image is pulled from singularity hub. If the pipeline is reused frequently, it might be more efficient to pull the image manually with the command:
 ```bash
-singularity pull quantiseq2.img IARCbioinfo/quantiseq-nf:v1.0
+singularity pull quantiseq2.img IARCbioinfo/quantiseq-nf:v1.1
 ```
 and then to provide the path to quantiseq2.img as a parameter.
 
 ## Usage
 ```bash
-nextflow run iarcbioinfo/quantiseq-nf -r v1.0 --input_folder input --output_folder output --image quantiseq2.img
+nextflow run iarcbioinfo/quantiseq-nf -r v1.1 --input_folder input --output_folder output --image quantiseq2.img
 ```
 
 ## Output 
