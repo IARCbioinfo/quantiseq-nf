@@ -139,7 +139,6 @@ if(params.input_file){
             cat !{pair2} > !{SM}!{params.suffix2}.!{params.fastq_ext}
 	        '''
 	}
-
     readPairs = readPairsNot2merge.concat( readPairsMerged )
 }
 
@@ -154,9 +153,9 @@ process quanTIseq {
 	file image
 	
 	output:
-	file("quantiseqResults*/*txt") into outputs
+	file("quantiseqResults*/*txt") into res_quantiseq
 
-	publishDir "${params.output_folder}", mode: 'copy'
+	publishDir "${params.output_folder}/intermediate_results/", mode: 'copy'
     
 	shell:
 	mode = params.nontumor  ? "" : "--tumor=TRUE"
@@ -166,4 +165,23 @@ process quanTIseq {
     mv quantiseqResults_* quantiseqResults_!{SM} 
     cd quantiseqResults_!{SM}/ && mv quanTIseq_cell_fractions.txt quanTIseq_cell_fractions_!{SM}.txt && mv quanTIseq_gene_tpm.txt quanTIseq_gene_tpm_!{SM}.txt
     '''
+}
+
+process merge_quanTIseq_res {
+	cpus 2
+	memory '300M'
+
+	input:
+	file res from res_quantiseq.collect()
+	
+	output:
+	file("quanTIseq_*matrix.txt") into output_mat
+
+	publishDir "${params.output_folder}", mode: 'copy'
+    
+	shell:
+    '''
+    awk 'FNR==1 && NR!=1 { while (/^Sample/) getline; } 1 {print}' quanTIseq_cell_fractions*.txt > quanTIseq_cell_fractions_matrix.txt
+    join quanTIseq_gene_tpm_*.txt > quanTIseq_gene_tpm_matrix.txt
+	'''
 }

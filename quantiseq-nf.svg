@@ -35,8 +35,8 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:zoom="0.62154919"
-     inkscape:cx="505.1816"
-     inkscape:cy="480.41231"
+     inkscape:cx="181.79609"
+     inkscape:cy="477.19454"
      inkscape:window-x="0"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
@@ -57,7 +57,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -10205,37 +10205,63 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       x="2259.5579"
+       x="2267.7932"
        y="432.01733"
        id="text3757-3-0"><tspan
          sodipodi:role="line"
-         x="2259.5579"
+         x="2267.7932"
          y="432.01733"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:32px;line-height:1.25;font-family:'Nimbus Sans L';-inkscape-font-specification:'Nimbus Sans L Bold';text-align:center;text-anchor:middle"
-         id="tspan4751-9">Immune quantification</tspan></text>
+         id="tspan4751-9">Immune quantification</tspan><tspan
+         sodipodi:role="line"
+         x="2267.7932"
+         y="472.28979"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:'Nimbus Sans L';-inkscape-font-specification:'Nimbus Sans L Bold';text-align:center;text-anchor:middle"
+         id="tspan4178">quantification  merge results</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       x="2269.9448"
-       y="470.38467"
+       x="2167.0042"
+       y="478.62003"
        id="text3757-3-3-1"><tspan
          sodipodi:role="line"
-         x="2269.9448"
-         y="473.38467"
+         x="2167.0042"
+         y="481.62003"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:'Nimbus Sans L';-inkscape-font-specification:'Nimbus Sans L';text-align:center;text-anchor:middle"
          id="tspan12391-5-6" /><tspan
          sodipodi:role="line"
-         x="2269.9448"
-         y="499.18912"
+         x="2167.0042"
+         y="507.42447"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:'Nimbus Sans L';-inkscape-font-specification:'Nimbus Sans L';text-align:center;text-anchor:middle"
          id="tspan4922-8-4"><tspan
            style="font-style:italic"
            id="tspan11318"> quanTIseq</tspan></tspan><tspan
          sodipodi:role="line"
-         x="2274.3823"
-         y="539.01794"
+         x="2171.4417"
+         y="547.2533"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:'Nimbus Sans L';-inkscape-font-specification:'Nimbus Sans L';text-align:center;text-anchor:middle"
          id="tspan4751-1-8"> </tspan></text>
+    <text
+       id="text4188"
+       y="478.62003"
+       x="2383.1797"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         id="tspan4180"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:'Nimbus Sans L';-inkscape-font-specification:'Nimbus Sans L';text-align:center;text-anchor:middle"
+         y="481.62003"
+         x="2383.1797"
+         sodipodi:role="line" /><tspan
+         id="tspan4184"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:'Nimbus Sans L';-inkscape-font-specification:'Nimbus Sans L';text-align:center;text-anchor:middle"
+         y="507.42447"
+         x="2383.1797"
+         sodipodi:role="line">bash script</tspan><tspan
+         id="tspan4186"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:'Nimbus Sans L';-inkscape-font-specification:'Nimbus Sans L';text-align:center;text-anchor:middle"
+         y="547.2533"
+         x="2387.6172"
+         sodipodi:role="line"> </tspan></text>
   </g>
   <g
      id="surface0-8-4"
@@ -10532,7 +10558,7 @@
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:24.8685627px;line-height:1.25;font-family:'Nimbus Sans L';-inkscape-font-specification:'Nimbus Sans L Bold';text-align:center;text-anchor:middle;stroke-width:0.77714258"
            y="226.75842"
            x="108.1596"
-           sodipodi:role="line">Merge files</tspan></text>
+           sodipodi:role="line">Merge fastq files</tspan></text>
       <text
          id="text2225"
          y="256.57532"
@@ -10548,7 +10574,7 @@
            style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24.8685627px;line-height:1.25;font-family:'Nimbus Sans L';-inkscape-font-specification:'Nimbus Sans L';text-align:center;text-anchor:middle;stroke-width:0.77714258"
            y="278.96048"
            x="116.23175"
-           sodipodi:role="line">cat</tspan><tspan
+           sodipodi:role="line">bash script</tspan><tspan
            id="tspan2223"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24.8685627px;line-height:1.25;font-family:'Nimbus Sans L';-inkscape-font-specification:'Nimbus Sans L';text-align:center;text-anchor:middle;stroke-width:0.77714258"
            y="309.91315"
