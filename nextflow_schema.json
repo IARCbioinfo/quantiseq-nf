@@ -1,0 +1,62 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://raw.githubusercontent.com/IARCbioinfo/quantiseq-nf/master/nextflow_schema.json",
+    "title": "quantiseq-nf pipeline parameters",
+    "description": "This pipeline performs quantification of immune infiltration with software quanTIseq",
+    "type": "object",
+    "properties": {
+        "input_folder": {
+            "type": "string",
+            "description": "Folder containing fastq files",
+            "default": "."
+        },
+        "input_file": {
+            "type": "string",
+            "default": "null",
+            "description": "Input file (tab-separated values) with 3 columns: SM (sample name), pair1 (first fastq pair file), and pair2 (second fastq pair file)"
+        },
+        "output_folder": {
+            "type": "string",
+            "default": ".",
+            "description": "Output folder for results"
+        },
+        "mem": {
+            "type": "string",
+            "description": "Size of memory (in GB)",
+            "default": "2"
+        },
+        "cpu": {
+            "type": "string",
+            "description": "Number of CPUs used",
+            "default": "1"
+        },
+        "fastq_ext": {
+            "type": "string",
+            "description": "Extension of fastq files",
+            "default": "fq.gz"
+        },
+        "suffix1": {
+            "type": "string",
+            "description": "Suffix for fastq file with 1st element of pair",
+            "default": "_1"
+        },
+        "suffix2": {
+            "type": "string",
+            "description": "Suffix for fastq file with 2nd element of pair",
+            "default": "_2"
+        },
+        "image": {
+            "type": "string",
+            "description": "Path to quantiseq singularity image to use",
+            "default": "null"
+        },
+        "nontumor": {
+            "type": "boolean",
+            "description": "Use nontumor quantiseq mode"
+        },
+        "help": {
+            "type": "boolean",
+            "description": "Display help"
+        }
+    }
+}
