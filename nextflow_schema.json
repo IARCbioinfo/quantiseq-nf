@@ -79,7 +79,7 @@
             "default": "",
             "properties": {
                 "nontumor": {
-                    "type": "string",
+                    "type": "boolean",
                     "description": "Use nontumor quantiseq mode"
                 },
                 "help": {
