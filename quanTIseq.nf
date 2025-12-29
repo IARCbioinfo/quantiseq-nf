@@ -190,8 +190,8 @@ workflow {
 
     // 1) Input ///////////////////////////////////////
 
-    Channel readPairs_premerge
-    Channel readPairs
+    def readPairs_premerge
+    def readPairs
 
     if (params.input_file) {
         readPairs_premerge =
@@ -210,7 +210,7 @@ workflow {
 
     // 2) Singularity image ////////////////////////////
 
-    Channel image_ch
+    def image_ch
 
     if (params.image) {
         image_ch = Channel.value(file(params.image))
@@ -222,20 +222,20 @@ workflow {
 
     if (params.input_file) {
 
-        Channel readPairsNot2merge
-        Channel readPairs2merge
+        def readPairsNot2merge
+        def readPairs2merge
 
         readPairs_premerge
             .choice(readPairsNot2merge, readPairs2merge) { it[1].size() == 1 ? 0 : 1 }
 
-        merged = MERGE_FASTQ(readPairs2merge)
+        def merged = MERGE_FASTQ(readPairs2merge)
 
         readPairs = readPairsNot2merge.concat(merged)
     }
 
     // 4) Run quanTIseq ////////////////////////////////
 	
-    quant_results = QUANTISEQ(readPairs, image_ch)
+    def quant_results = QUANTISEQ(readPairs, image_ch)
 
     // 5) Merge outputs ////////////////////////////////
 
