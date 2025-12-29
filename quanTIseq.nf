@@ -227,9 +227,9 @@ workflow {
             tomerge:   it[1].size()  > 1
         }
 
-        def merged = MERGE_FASTQ(readPairs2merge)
+        def merged = MERGE_FASTQ(branched.tomerge)
 
-        readPairs = readPairsNot2merge.concat(merged)
+        readPairs = branched.not2merge.concat(merged)
     }
 
     // 4) Run quanTIseq ////////////////////////////////
