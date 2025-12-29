@@ -222,11 +222,10 @@ workflow {
 
     if (params.input_file) {
 
-        def readPairsNot2merge
-        def readPairs2merge
-
-        readPairs_premerge
-            .choice(readPairsNot2merge, readPairs2merge) { it[1].size() == 1 ? 0 : 1 }
+       def branched = readPairs_premerge.branch {
+            not2merge: it[1].size() == 1
+            tomerge:   it[1].size()  > 1
+        }
 
         def merged = MERGE_FASTQ(readPairs2merge)
 
