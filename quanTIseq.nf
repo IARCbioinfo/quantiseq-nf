@@ -1,21 +1,9 @@
 #! /usr/bin/env nextflow
 
-//vim: syntax=groovy -*- mode: groovy;-*-
-
-// Copyright (C) 2018 IARC/WHO
-
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-
-// You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+// Copyright (C) 2026 IARC/WHO
+// This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+// This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+// See the GNU General Public License for more details <http://www.gnu.org/licenses/>.
 
 nextflow.enable.dsl = 2
 
@@ -35,55 +23,18 @@ params.image = null
 params.nontumor = null
 params.help = null
 
-log.info ""
-log.info "-----------------------------------------------------------------------------------"
-log.info "  quantiseq-nf v1.1: quantification of immune infiltration with quanTIseq"
-log.info "-----------------------------------------------------------------------------------"
-log.info "Copyright (C) IARC/WHO"
-log.info "This program comes with ABSOLUTELY NO WARRANTY; for details see LICENSE"
-log.info "This is free software, and you are welcome to redistribute it"
-log.info "under certain conditions; see LICENSE for details."
-log.info "--------------------------------------------------------"
-log.info ""
-
-if (params.help) {
-    log.info "--------------------------------------------------------"
-    log.info "  USAGE                                                 "
-    log.info "--------------------------------------------------------"
-    log.info ""
-    log.info "nextflow run iarcbioinfo/rnaseq-transcript-nf [-with-docker] [OPTIONS]"
-    log.info ""
-    log.info "Mandatory arguments:"
-    log.info '    --input_folder   FOLDER              Folder containing fastq files.'
-    log.info ""
-    log.info "Optional arguments:"
-    log.info '    --input_file      STRING             Input file (tab-separated values) with 3 columns:'
-    log.info '                                         SM (sample name), pair1 (first fastq pair file),'
-    log.info '                                         and pair2 (second fastq pair file).'
-    log.info '    --output_folder   STRING             Output folder (default: .).'
-    log.info '    --suffix1         STRING             Suffix for fastq file with 1st element of pair.'
-    log.info '    --suffix2         STRING             Suffix for fastq file with 2nd element of pair.'
-    log.info '    --fastq_ext       STRING             Extension of fastq files (default : fq.gz)'
-    log.info '    --cpu             INTEGER            Number of cpu used (default: 1).'
-    log.info '    --mem             INTEGER            Size of memory (in GB) (default: 2).' 
-    log.info '    --image           STRING             Path to quantiseq singularity image (default: null).' 
-    log.info ''
-    log.info 'Flags:'
-    log.info '    --nontumor                           Use nontumor quantiseq mode'
-    exit 0
-} else {
-/* Software information */
-   log.info "input_folder = ${params.input_folder}"
-   log.info "input_file     = ${params.input_file}"
-   log.info "cpu          = ${params.cpu}"
-   log.info "mem          = ${params.mem}"
-   log.info "suffix1      = ${params.suffix1}"
-   log.info "suffix2      = ${params.suffix2}"
-   log.info "output_folder= ${params.output_folder}"
-   log.info "fastq_ext    = ${params.fastq_ext}"
-   log.info "image        = ${params.image}"
-   log.info "nontumor     = ${params.nontumor}"
-   log.info "help:        ${params.help}"
+//Header for the IARC tools - logo generated using the following page : http://patorjk.com/software/taag  (ANSI logo generator)
+def IARC_Header (){
+     return  """
+#################################################################################
+# ██╗ █████╗ ██████╗  ██████╗██████╗ ██╗ ██████╗ ██╗███╗   ██╗███████╗ ██████╗  #
+# ██║██╔══██╗██╔══██╗██╔════╝██╔══██╗██║██╔═══██╗██║████╗  ██║██╔════╝██╔═══██╗ #
+# ██║███████║██████╔╝██║     ██████╔╝██║██║   ██║██║██╔██╗ ██║█████╗  ██║   ██║ #
+# ██║██╔══██║██╔══██╗██║     ██╔══██╗██║██║   ██║██║██║╚██╗██║██╔══╝  ██║   ██║ #
+# ██║██║  ██║██║  ██║╚██████╗██████╔╝██║╚██████╔╝██║██║ ╚████║██║     ╚██████╔╝ #
+# ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═════╝ ╚═╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝╚═╝      ╚═════╝  #
+# Nextflow pipelines for cancer genomics.########################################
+"""
 }
 
 // --------------------------------------------------
@@ -187,6 +138,60 @@ process MERGE_QUANTISEQ_RESULTS {
 // --------------------------------------------------
 
 workflow {
+  		log.info IARC_Header()
+// --------------------------------------------------
+// INFO / HELP
+// --------------------------------------------------
+
+log.info ""
+log.info "----------------------------------------------------------------------------------------------------------------"
+log.info "  quantiseq-nf v1.1: quantification of immune infiltration with quanTIseq"
+log.info "----------------------------------------------------------------------------------------------------------------"
+log.info "Copyright (C) IARC/WHO"
+log.info "This program comes with ABSOLUTELY NO WARRANTY; for details see LICENSE"
+log.info "This is free software, and you are welcome to redistribute it under certain conditions; see LICENSE for details."
+log.info "----------------------------------------------------------------------------------------------------------------"
+log.info ""
+
+if (params.help) {
+    log.info "--------------------------------------------------------"
+    log.info "  USAGE                                                 "
+    log.info "--------------------------------------------------------"
+    log.info ""
+    log.info "nextflow run iarcbioinfo/rnaseq-transcript-nf [-with-docker] [OPTIONS]"
+    log.info ""
+    log.info "Mandatory arguments:"
+    log.info '    --input_folder   FOLDER              Folder containing fastq files.'
+    log.info ""
+    log.info "Optional arguments:"
+    log.info '    --input_file      STRING             Input file (tab-separated values) with 3 columns:'
+    log.info '                                         SM (sample name), pair1 (first fastq pair file),'
+    log.info '                                         and pair2 (second fastq pair file).'
+    log.info '    --output_folder   STRING             Output folder (default: .).'
+    log.info '    --suffix1         STRING             Suffix for fastq file with 1st element of pair.'
+    log.info '    --suffix2         STRING             Suffix for fastq file with 2nd element of pair.'
+    log.info '    --fastq_ext       STRING             Extension of fastq files (default : fq.gz)'
+    log.info '    --cpu             INTEGER            Number of cpu used (default: 1).'
+    log.info '    --mem             INTEGER            Size of memory (in GB) (default: 2).' 
+    log.info '    --image           STRING             Path to quantiseq singularity image (default: null).' 
+    log.info ''
+    log.info 'Flags:'
+    log.info '    --nontumor                           Use nontumor quantiseq mode'
+    exit 0
+} else {
+/* Software information */
+   log.info "input_folder = ${params.input_folder}"
+   log.info "input_file     = ${params.input_file}"
+   log.info "cpu          = ${params.cpu}"
+   log.info "mem          = ${params.mem}"
+   log.info "suffix1      = ${params.suffix1}"
+   log.info "suffix2      = ${params.suffix2}"
+   log.info "output_folder= ${params.output_folder}"
+   log.info "fastq_ext    = ${params.fastq_ext}"
+   log.info "image        = ${params.image}"
+   log.info "nontumor     = ${params.nontumor}"
+   log.info "help:        ${params.help}"
+}
 
     // 1) Input ///////////////////////////////////////
 
